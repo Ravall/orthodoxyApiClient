@@ -13,7 +13,6 @@ namespace OrthodoxyClient
         private function _request($url)
         {
             $ch = curl_init();
-            var_dump($url);
             curl_setopt($ch, CURLOPT_URL, $url);
             //do not output directly, use variable
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
