@@ -12,24 +12,16 @@ namespace OrthodoxyClient
          */
         public static function getUnicIconsByDay($apiGetDayResult)
         {
-            $icons = array(
-                'unic'  => array(),
-                'other' => array(),
-            );
+            $icons = array();
             if (!$apiGetDayResult) {
                 return $icons;
             }
-            # выделим в параметр unic по одной иконе от каждого события
-            foreach ($apiGetDayResult->icons as $icon) {
-                $icons[in_array(
-                    $icon->event_id,
-                    array_map(
-                        create_function('$x', 'return $x->event_id;'),
-                        $icons['unic']
-                    )
-                ) ? 'other' : 'unic'][] = $icon;
+            foreach ($apiGetDayResult->events as $event) {
+                if (isset($event['icons'])) {
+                    $icons[] = $event['icons'][0];
+                }
             }
-            return $icons['unic'];
+            return $icons;
         }
     }
 }
