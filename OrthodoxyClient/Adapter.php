@@ -17,8 +17,8 @@ namespace OrthodoxyClient
                 return $icons;
             }
             foreach ($apiGetDayResult->events as $event) {
-                if (isset($event['icons'])) {
-                    $icons[] = $event['icons'][0];
+                if (isset($event->icons)) {
+                    $icons[] = $event->icons[0];
                 }
             }
             return $icons;
